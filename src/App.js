@@ -15,7 +15,9 @@ export default function App() {
 
   const [lista, setLista] = useState([]);
 
-  function addLista() {
+  function addLista(event) {
+    event.preventDefault();
+
     const novoObjeto = {
       Nome: NomeField,
       Email: EmailField,
@@ -37,6 +39,13 @@ export default function App() {
     setBairroField("");
     setCidadeField("");
     setEstadoField("");
+  }
+
+  function fncApagar(index) {
+    console.log(lista);
+    // const indexObjeto = lista[index];
+    const newList = lista.splice(index, 1);
+    setLista([...lista, newList]);
   }
 
   return (
@@ -67,7 +76,7 @@ export default function App() {
               value={EmailField}
               onChange={e => setEmailField(e.target.value)}
               type="email"
-              placeholder="Endereço de Email"
+              placeholder="Ex. fulano@gmail.com"
             />
           </div>
         </div>
@@ -81,7 +90,7 @@ export default function App() {
               value={TelefoneField}
               onChange={e => setTelefoneField(e.target.value)}
               type="text"
-              placeholder="(00) 90000-0000"
+              placeholder="Ex. (00) 90000-0000"
             />
           </div>
 
@@ -93,7 +102,7 @@ export default function App() {
               value={CepField}
               onChange={e => setCepField(e.target.value)}
               type="text"
-              placeholder="00000-000"
+              placeholder="Ex. 00000-000"
             />
           </div>
         </div>
@@ -107,7 +116,7 @@ export default function App() {
               value={EnderecoField}
               onChange={e => setEnderecoField(e.target.value)}
               type="text"
-              placeholder="Endereço Residêncial"
+              placeholder="Ex. Rua das Limeiras"
             />
           </div>
 
@@ -133,7 +142,7 @@ export default function App() {
               value={BairroField}
               onChange={e => setBairroField(e.target.value)}
               type="text"
-              placeholder="Bairro"
+              placeholder="Ex. Parque do Lago"
             />
           </div>
 
@@ -193,12 +202,12 @@ export default function App() {
               value={CidadeField}
               onChange={e => setCidadeField(e.target.value)}
               type="text"
-              placeholder="Número da Casa"
+              placeholder="Ex. São Paulo"
             />
           </div>
 
-          <button className="button" onClick={addLista}>
-            Exibir Lista
+          <button className="button" type="submit" onClick={addLista}>
+            Salvar
           </button>
         </div>
       </form>
@@ -207,7 +216,7 @@ export default function App() {
 
       {/* Tabela */}
       <div className="container-main2 table">
-        <table table>
+        <table>
           <thead className="thead-dark thead">
             <tr>
               <th scope="col">Nome</th>
@@ -219,13 +228,14 @@ export default function App() {
               <th scope="col">Bairro</th>
               <th scope="col">Estado</th>
               <th scope="col">Cidade</th>
+              <th />
             </tr>
           </thead>
 
           <tbody Nome="tabela-alunos">
             {lista.map(function(item, i) {
               return (
-                <tr>
+                <tr key={item.id}>
                   <td>{item.Nome}</td>
                   <td>{item.Email}</td>
                   <td>{item.Telefone}</td>
@@ -235,6 +245,9 @@ export default function App() {
                   <td>{item.Bairro}</td>
                   <td>{item.Estado}</td>
                   <td>{item.Cidade}</td>
+                  <td>
+                    <button onClick={() => fncApagar(i)}>Apagar</button>
+                  </td>
                 </tr>
               );
             })}

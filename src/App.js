@@ -52,7 +52,6 @@ export default function App() {
             <label>Nome*</label>
             <input
               className="input form-control"
-              required="required"
               value={NomeField}
               onChange={e => setNomeField(e.target.value)}
               type="text"
@@ -209,7 +208,7 @@ export default function App() {
       {/* Tabela */}
       <div className="container-main2 table">
         <table table>
-          <thead className="thead-dark top">
+          <thead className="thead-dark thead">
             <tr>
               <th scope="col">Nome</th>
               <th scope="col">Email</th>

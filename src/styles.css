@@ -53,12 +53,7 @@ label {
 }
 
 .container-main2 {
-  background-color: aquamarine;
+  background-color: rgb(207, 204, 204);
   margin: 10px 0px 0px 10px;
   border-radius: 20px;
-}
-
-.top {
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
 }
